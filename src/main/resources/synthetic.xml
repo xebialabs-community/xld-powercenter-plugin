@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<synthetic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://www.xebialabs.com/deployit/synthetic"
+           xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
+
+<!-- KPMG followups Aug 21 2014 -->
+
+<type type="powercenter.PowercenterContainer" extends="generic.Container">
+	<property name="home"/>
+	<property name="repository"/>
+	<property name="domain"/>
+	<property name="userName"/>
+	<property name="password" password="true"/>
+	<method name="verifyConnection" label="Verify Connection" delegate="shellScript" script="powercenter/powercenter_checkConnection"/>
+</type>
+
+<type type="powercenter.DeployedPowercenterXml" extends="generic.ExecutedScriptWithDerivedArtifact" deployable-type="powercenter.PowercenterXml" container-type="powercenter.PowercenterContainer"
+         description="Powercenter xml containting one or more Powercenter objects">
+	<generate-deployable type="powercenter.PowercenterXml" extends="generic.File"/>
+	<property name="sourceRepository" default="SOURCE_REPO" category="Advanced"/>
+	<property name="folderNames" kind="list_of_string"/>
+	<!-- hidden -->
+	<property name="classpathResources" kind="set_of_string" hidden="true" default="powercenter/impcntl.dtd"/>
+	<property name="templateClasspathResources" kind="set_of_string" hidden="true" default="powercenter/powercenter_controlfile.xml"/>
+	<property name="createScript" hidden="true" default="powercenter/powercenter_install.sh"/>
+	<property name="modifyScript" hidden="true" default="powercenter/powercenter_install.sh"/>
+	<property name="destroyScript" hidden="true" default="powercenter/powercenter_uninstall.sh"/>
+</type>
+
+</synthetic>
+

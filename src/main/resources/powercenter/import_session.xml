@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE IMPORTPARAMS SYSTEM "impcntl.dtd">
+<!--IMPORTPARAMS This inputs the options and inputs required for import operation -->
+<!--CHECKIN_AFTER_IMPORT Check in objects on successful import operation -->
+<!--CHECKIN_COMMENTS Check in comments -->
+<!--APPLY_LABEL_NAME Apply the given label name on imported objects -->
+<!--RETAIN_GENERATED_VALUE Retain existing sequence generator, normalizer and XML DSQ current values in the destination -->
+<!--COPY_SAP_PROGRAM Copy SAP program information into the target repository -->
+<!--APPLY_DEFAULT_CONNECTION Apply the default connection when a connection used by a session does not exist in the target repository -->
+
+<IMPORTPARAMS CHECKIN_AFTER_IMPORT="YES" CHECKIN_COMMENTS="Impacted"  RETAIN_GENERATED_VALUE="YES" COPY_SAP_PROGRAM="YES" APPLY_DEFAULT_CONNECTION="NO">
+
+<!--FOLDERMAP matches the folders in the imported file with the folders in the target repository -->
+
+	<FOLDERMAP SOURCEFOLDERNAME="@SOURCE_FOLDER@" SOURCEREPOSITORYNAME="@SOURCE_REPOSITORY@" TARGETFOLDERNAME="@TARGET_FOLDER@" TARGETREPOSITORYNAME="@TARGET_REPOSITORY@"/>
+
+<!--Import will only import the objects in the selected types in TYPEFILTER node -->
+<!--TYPENAME type name to import. This should comforming to the element name in powermart.dtd, e.g. SOURCE, TARGET and etc.-->
+	<TYPEFILTER TYPENAME="SOURCE"/>	
+	<TYPEFILTER TYPENAME="TARGET"/>	
+	<TYPEFILTER TYPENAME="MAPPLET"/>	
+	<TYPEFILTER TYPENAME="MAPPING"/>	
+	<TYPEFILTER TYPENAME="TRANSFORMATION"/>	
+	<TYPEFILTER TYPENAME="CONFIG"/>	
+	<TYPEFILTER TYPENAME="TASK"/>	
+	<TYPEFILTER TYPENAME="SESSION"/>	
+	<TYPEFILTER TYPENAME="SCHEDULER"/>	
+	<TYPEFILTER TYPENAME="WORKFLOW"/>	
+	<TYPEFILTER TYPENAME="WORKLET"/>	
+
+
+<!--RESOLVECONFLICT allows to specify resolution for conflicting objects during import. The combination of specified child nodes can be supplied -->
+	<RESOLVECONFLICT>
+
+
+
+<!--QUERYOBJECT allows objects result from a query to apply replace/reuse upon conflict -->
+
+<!--LABELOBJECT allows objects in the target with label name to apply replace/reuse upon conflict -->
+
+
+<!--TYPEOBJECT allows objects of certain type to apply replace/reuse upon conflict-->
+<!--TYPEOBJECT = ALL conflict resolution for ALL types of objects -->
+		<TYPEOBJECT OBJECTTYPENAME="WORKFLOW" RESOLUTION="REPLACE"/>
+		<TYPEOBJECT OBJECTTYPENAME="WORKLET" RESOLUTION="REPLACE"/>
+		<TYPEOBJECT OBJECTTYPENAME="SESSION" RESOLUTION="REPLACE"/>
+		<TYPEOBJECT OBJECTTYPENAME="MAPPING" RESOLUTION="REPLACE"/>
+		<TYPEOBJECT OBJECTTYPENAME="MAPPLET" RESOLUTION="REPLACE"/>
+        <TYPEOBJECT OBJECTTYPENAME="Source definition" RESOLUTION="REUSE"/>
+		<TYPEOBJECT OBJECTTYPENAME="Target definition" RESOLUTION="REUSE"/>
+		<TYPEOBJECT OBJECTTYPENAME="Expression" RESOLUTION="REUSE"/>
+		<TYPEOBJECT OBJECTTYPENAME="Filter" RESOLUTION="REUSE"/>
+		<TYPEOBJECT OBJECTTYPENAME="Aggregator" RESOLUTION="REUSE"/>
+		<TYPEOBJECT OBJECTTYPENAME="Rank" RESOLUTION="REUSE"/>
+		<TYPEOBJECT OBJECTTYPENAME="Normalizer" RESOLUTION="REUSE"/>
+		<TYPEOBJECT OBJECTTYPENAME="Router" RESOLUTION="REUSE"/>
+		<TYPEOBJECT OBJECTTYPENAME="Sequence" RESOLUTION="REUSE"/>
+		<TYPEOBJECT OBJECTTYPENAME="Sorter" RESOLUTION="REUSE"/>
+		<TYPEOBJECT OBJECTTYPENAME="update strategy" RESOLUTION="REUSE"/>
+		<TYPEOBJECT OBJECTTYPENAME="Custom Transformation" RESOLUTION="REUSE"/>
+		<TYPEOBJECT OBJECTTYPENAME="Lookup Procedure" RESOLUTION="REUSE"/>
+		<TYPEOBJECT OBJECTTYPENAME="Transaction control" RESOLUTION="REUSE"/>
+		<TYPEOBJECT OBJECTTYPENAME="Stored Procedure" RESOLUTION="REUSE"/>
+		<TYPEOBJECT OBJECTTYPENAME="External Procedure" RESOLUTION="REUSE"/>
+		<TYPEOBJECT OBJECTTYPENAME="Joiner" RESOLUTION="REUSE"/>
+		<TYPEOBJECT OBJECTTYPENAME="SessionConfig" RESOLUTION="REUSE"/>
+		<TYPEOBJECT OBJECTTYPENAME="Email" RESOLUTION="REUSE"/>
+		<TYPEOBJECT OBJECTTYPENAME="Command" RESOLUTION="REUSE"/>
+		<TYPEOBJECT OBJECTTYPENAME="Scheduler" RESOLUTION="REUSE"/>
+		<TYPEOBJECT OBJECTTYPENAME="ALL" RESOLUTION="REUSE"/>
+
+<!--SPECIFICOBJECT allows a particular object(name, typename etc.) to apply replace/reuse upon conflict -->
+<!--NAME Object name-->
+<!--EXTRANAME Source DBD name - required for source object to identify uniquely-->
+<!--OBJECTTYPENAME Object type name-->
+<!--FOLDERNAME Folder which the object belongs to-->
+<!--REPOSITORYNAME Repository name that this object belongs to-->
+<!--RESOLUTION Resolution to apply for the object in case of conflict-->
+
+
+	</RESOLVECONFLICT>
+</IMPORTPARAMS>
