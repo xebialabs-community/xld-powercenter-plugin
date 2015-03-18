@@ -7,6 +7,6 @@ deploy:
   provider: releases
   api_key:
     secure: X4UYV1nHCUMb//PFjZgbeCyQ7G9dAXH1/d+flGBTek/Om91sWR6GWwSDCfnK+LywUT0EXsDrSxry48xgo9whzaE2wdQR8gCcom/8vBGNvfyv7CXT+sHFlORF0+gD/WQpCVxPJW0ujbT+pSxoHzUhpJ3EnKwTFru76jWmFJZ+sdU=
-  file: build/libs/xld-powercenter-plugin-1.0.1.jar
+  file: build/libs/xld-powercenter-plugin-1.0.2.jar
   on:
     repo: xebialabs-community/xld-powercenter-plugin
