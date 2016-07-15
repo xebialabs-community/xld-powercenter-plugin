@@ -18,7 +18,15 @@ fi
 ${pmrep} connect -r ${deployed.container.repository} -d ${deployed.container.domain} -n ${deployed.container.userName} -x ${deployed.container.password}
 ${exitCodeCheck}
 
-${pmrep} deleteobject -o workflow -f SCD_ADAPTER -n TESTWVR
+<#list deployed.folderNames as folderName>
+<#list deployed.objectNames as objectName>
+<#list deployed.objectTypes as objectType>
+${pmrep} deleteobject -o ${objectType} -f ${folderName} -n ${objectName}
+</#list>
+</#list>
+</#list>
+
+
 ${exitCodeCheck}
 
 echo ------------------------------------------------------------------------

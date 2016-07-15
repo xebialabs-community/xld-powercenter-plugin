@@ -7,7 +7,7 @@ deploy:
   provider: releases
   api_key:
     secure: ZVBw8EHIaJxaTG6pTMsskCE6OQuFk/YOyfat0lNDQWmMHB/RO8wS5YlmAZTgkEqWyKtR76Fs7ktPMe1ETVymUCZEHgjH0aqiidyqMpIsrKT+yyV1HrQTjjDCOmQN0759Bm7MwAehDCodiMPwbmabdxxIyAcdI5PtmfE11ZIjHsU=
-  file: build/libs/xld-powercenter-plugin-1.0.2.jar
+  file: build/distributions/xld-powercenter-plugin-1.0.3.xldp
   on:
     all_branches: true
     tags: true
