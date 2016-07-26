@@ -5,12 +5,12 @@
     FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALABS.
 
 -->
-<#assign pmrep=deployed.container.home + "/server/bin/pmrep">
-${pmrep} connect -r ${deployed.container.repository} -d ${deployed.container.domain} -n ${deployed.container.userName} -x ${deployed.container.password}
+<#assign pmrep=previousDeployed.container.home + "/server/bin/pmrep">
+${pmrep} connect -r ${previousDeployed.container.repository} -d ${previousDeployed.container.domain} -n ${previousDeployed.container.userName} -x ${previousDeployed.container.password}
 
-<#list deployed.folderNames as folderName>
-<#list deployed.objectNames as objectName>
-<#list deployed.objectTypes as objectType>
+<#list previousDeployed.folderNames as folderName>
+<#list previousDeployed.objectNames as objectName>
+<#list previousDeployed.objectTypes as objectType>
 ${pmrep} deleteobject -o ${objectType} -f ${folderName} -n ${objectName}
 </#list>
 </#list>

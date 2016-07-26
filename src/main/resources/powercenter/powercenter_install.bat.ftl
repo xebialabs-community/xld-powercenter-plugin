@@ -8,4 +8,4 @@
 <#assign pmrep=deployed.container.home + "\\server\\bin\\pmrep">
 ${pmrep} connect -r ${deployed.container.repository} -d ${deployed.container.domain} -n ${deployed.container.userName} -x ${deployed.container.password}
 
-${pmrep} objectimport -i ${deployed.file}  -c powercenter/powercenter_controlfile.xml
+${pmrep} objectimport -i ${deployed.file.path}  -c powercenter/powercenter_controlfile.xml

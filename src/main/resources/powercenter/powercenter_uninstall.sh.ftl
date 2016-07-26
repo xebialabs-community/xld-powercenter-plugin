@@ -5,22 +5,22 @@
     FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALABS.
 
 -->
-export INFA_HOME=${deployed.container.home}
-export LD_LIBRARY_PATH=${deployed.container.home}/server/bin
+export INFA_HOME=${previousDeployed.container.home}
+export LD_LIBRARY_PATH=${previousDeployed.container.home}/server/bin
 
-<#assign pmrep=deployed.container.home + "/server/bin/pmrep">
+<#assign pmrep=previousDeployed.container.home + "/server/bin/pmrep">
 <#assign exitCodeCheck>
 res=$?
 if [ $res != 0 ] ; then
   exit $res
 fi
 </#assign>
-${pmrep} connect -r ${deployed.container.repository} -d ${deployed.container.domain} -n ${deployed.container.userName} -x ${deployed.container.password}
+${pmrep} connect -r ${previousDeployed.container.repository} -d ${previousDeployed.container.domain} -n ${previousDeployed.container.userName} -x ${previousDeployed.container.password}
 ${exitCodeCheck}
 
-<#list deployed.folderNames as folderName>
-<#list deployed.objectNames as objectName>
-<#list deployed.objectTypes as objectType>
+<#list previousDeployed.folderNames as folderName>
+<#list previousDeployed.objectNames as objectName>
+<#list previousDeployed.objectTypes as objectType>
 ${pmrep} deleteobject -o ${objectType} -f ${folderName} -n ${objectName}
 </#list>
 </#list>

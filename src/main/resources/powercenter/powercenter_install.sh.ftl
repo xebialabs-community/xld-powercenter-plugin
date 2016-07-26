@@ -20,5 +20,5 @@ ${exitCodeCheck}
 
 echo ------------------------------------------------------------------------
 
-${pmrep} objectimport -i ${deployed.file}  -c powercenter/powercenter_controlfile.xml
+${pmrep} objectimport -i ${deployed.file.path}  -c powercenter/powercenter_controlfile.xml
 ${exitCodeCheck}
