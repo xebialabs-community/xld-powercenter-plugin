@@ -5,6 +5,8 @@
     FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALABS.
 
 -->
+@echo off
+
 <#assign pmrep=deployed.container.home + "\\server\\bin\\pmrep">
 ${pmrep} connect -r ${deployed.container.repository} -d ${deployed.container.domain} -n ${deployed.container.userName} -x ${deployed.container.password}
 
