@@ -32,6 +32,7 @@
         <conditions>
             <type>powercenter.DeployedPowercenterXml</type>
             <operation>DESTROY</operation>
+            <expression>not previousDeployed.container.versioningEnabled</expression>
         </conditions>
         <steps>
             <os-script>

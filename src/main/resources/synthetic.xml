@@ -18,6 +18,7 @@
         <property name="domain"/>
         <property name="userName"/>
         <property name="password" password="true"/>
+        <property name="versioningEnabled" kind="boolean" default="false" description="If set to true, undeploy will not be executed, as pmrep deleteobject doesn't work with versioning enabled."/>
         <method name="verifyConnection" label="Verify Connection" delegate="shellScript"
                 script="powercenter/powercenter_checkConnection"/>
     </type>
