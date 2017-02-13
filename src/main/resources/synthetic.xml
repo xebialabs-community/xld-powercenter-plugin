@@ -28,11 +28,11 @@
           description="Powercenter xml containting one or more Powercenter objects">
         <generate-deployable type="powercenter.PowercenterXml" extends="udm.BaseDeployableFileArtifact"/>
         <property name="sourceRepository" default="SOURCE_REPO" category="Advanced"/>
-        <property name="folderNames" kind="list_of_string"/>
+        <property name="SrcfolderNames" kind="list_of_string"/>
+        <property name="TgtfolderNames" kind="list_of_string"/>
         <property name="objectNames" kind="list_of_string"/>
         <property name="objectTypes" kind="list_of_string"/>
     </type>
 
 
 </synthetic>
-
