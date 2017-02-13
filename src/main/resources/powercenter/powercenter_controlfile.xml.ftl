@@ -9,30 +9,30 @@
 
 <!DOCTYPE IMPORTPARAMS SYSTEM "impcntl.dtd">
 
-<!--IMPORTPARAMS This inputs the options and inputs required for import operation --> 
+<!--IMPORTPARAMS This inputs the options and inputs required for import operation -->
 
-<!--CHECKIN_AFTER_IMPORT Check in objects on successful import operation --> 
+<!--CHECKIN_AFTER_IMPORT Check in objects on successful import operation -->
 
-<!--CHECKIN_COMMENTS Check in comments --> 
+<!--CHECKIN_COMMENTS Check in comments -->
 
-<!--APPLY_LABEL_NAME Apply the given label name on imported objects --> 
+<!--APPLY_LABEL_NAME Apply the given label name on imported objects -->
 
-<!--RETAIN_GENERATED_VALUE Retain existing sequence generator, normalizer and XML DSQ current values in the destination --> 
+<!--RETAIN_GENERATED_VALUE Retain existing sequence generator, normalizer and XML DSQ current values in the destination -->
 
-<!--COPY_SAP_PROGRAM Copy SAP program information into the target repository --> 
+<!--COPY_SAP_PROGRAM Copy SAP program information into the target repository -->
 
-<!--APPLY_DEFAULT_CONNECTION Apply the default connection when a connection used by a session does not exist in the target repository --> 
+<!--APPLY_DEFAULT_CONNECTION Apply the default connection when a connection used by a session does not exist in the target repository -->
 
 <!--IMPORTPARAMS This inputs the options and inputs required for import operation -->
 
 <!--FOLDERMAP matches the folders in the imported file with the folders in the target repository -->
 
 
-<IMPORTPARAMS CHECKIN_AFTER_IMPORT="YES" CHECKIN_COMMENTS="Deployit Test" RETAIN_GENERATED_VALUE="YES" COPY_SAP_PROGRAM="YES" APPLY_DEFAULT_CONNECTION="NO">  
+<IMPORTPARAMS CHECKIN_AFTER_IMPORT="YES" CHECKIN_COMMENTS="Deployit Test" RETAIN_GENERATED_VALUE="YES" COPY_SAP_PROGRAM="YES" APPLY_DEFAULT_CONNECTION="NO">
 <#list deployed.folderNames as folderName>
-<FOLDERMAP SOURCEFOLDERNAME="${folderName}" SOURCEREPOSITORYNAME="${deployed.sourceRepository}" TARGETFOLDERNAME="${folderName}" TARGETREPOSITORYNAME="${deployed.container.repository}"/> 
+<FOLDERMAP SOURCEFOLDERNAME="${SrcfolderName}" SOURCEREPOSITORYNAME="${deployed.sourceRepository}" TARGETFOLDERNAME="${TgtfolderName}" TARGETREPOSITORYNAME="${deployed.container.repository}"/> 
 </#list>
- 
+
 
 
 <!--RESOLVECONFLICT allows to specify resolution for conflicting objects during import. The combination of specified child nodes can be supplied -->
@@ -48,4 +48,3 @@
 </RESOLVECONFLICT>
 
 </IMPORTPARAMS>
-
