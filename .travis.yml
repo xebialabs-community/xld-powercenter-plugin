@@ -2,8 +2,8 @@ language: java
 
 deploy:
   provider: releases
-  api_key: ee1484e767909feef390b026a8a7c991e6a09736
-    
+  api_key: "ee1484e767909feef390b026a8a7c991e6a09736"
+
   file: build/distributions/xld-powercenter-plugin-1.0.7.xldp
   on:
     all_branches: true
