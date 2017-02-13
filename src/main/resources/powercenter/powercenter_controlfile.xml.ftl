@@ -29,9 +29,7 @@
 
 
 <IMPORTPARAMS CHECKIN_AFTER_IMPORT="YES" CHECKIN_COMMENTS="Deployit Test" RETAIN_GENERATED_VALUE="YES" COPY_SAP_PROGRAM="YES" APPLY_DEFAULT_CONNECTION="NO">
-<#list deployed.folderNames as TgtfolderName>
 <FOLDERMAP SOURCEFOLDERNAME="${SrcfolderName}" SOURCEREPOSITORYNAME="${deployed.sourceRepository}" TARGETFOLDERNAME="${TgtfolderName}" TARGETREPOSITORYNAME="${deployed.container.repository}"/>
-</#list>
 
 
 
