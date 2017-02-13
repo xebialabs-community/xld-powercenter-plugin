@@ -7,7 +7,7 @@ deploy:
   provider: releases
   api_key:
     secure: ZVBw8EHIaJxaTG6pTMsskCE6OQuFk/YOyfat0lNDQWmMHB/RO8wS5YlmAZTgkEqWyKtR76Fs7ktPMe1ETVymUCZEHgjH0aqiidyqMpIsrKT+yyV1HrQTjjDCOmQN0759Bm7MwAehDCodiMPwbmabdxxIyAcdI5PtmfE11ZIjHsU=
-  file: build/distributions/xld-powercenter-plugin-1.0.6.xldp
+  file: build/distributions/xld-powercenter-plugin-1.0.7.xldp
   on:
     all_branches: true
     tags: true
