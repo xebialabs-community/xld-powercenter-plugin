@@ -16,7 +16,7 @@ xldDocker {
 }
 
 
-version="1.0.7"
+version="1.0.15"
 
 processResources.configure {
     filter ReplaceTokens, tokens: [
