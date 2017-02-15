@@ -29,8 +29,9 @@
 
 
 <IMPORTPARAMS CHECKIN_AFTER_IMPORT="YES" CHECKIN_COMMENTS="Deployit Test" RETAIN_GENERATED_VALUE="YES" COPY_SAP_PROGRAM="YES" APPLY_DEFAULT_CONNECTION="NO">
-<FOLDERMAP SOURCEFOLDERNAME="${SrcfolderName}" SOURCEREPOSITORYNAME="${deployed.sourceRepository}" TARGETFOLDERNAME="${TgtfolderName}" TARGETREPOSITORYNAME="${deployed.container.repository}"/>
-
+<#list deployed.srcFolderNames as srcFolderName>
+<FOLDERMAP SOURCEFOLDERNAME="${srcFolderName}" SOURCEREPOSITORYNAME="${deployed.sourceRepository}" TARGETFOLDERNAME="${tgtFolderNames[srcFolderName?index]}" TARGETREPOSITORYNAME="${deployed.container.repository}"/>
+</#list>
 
 
 <!--RESOLVECONFLICT allows to specify resolution for conflicting objects during import. The combination of specified child nodes can be supplied -->
