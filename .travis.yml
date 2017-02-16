@@ -13,7 +13,7 @@ B6CiIqhPNyZFiQsm5wFQZAMDFMoiLWfRN0ZVbjcXRN/j2X9W9WJA5PeLoTahATtQwnFlwMchqECV315F
 RsTARRfQG3Ehao6HnrVLHtEIkm9vlOV1jgVcIrAZNmANg7pKIhKeOkQ6qjU36Gha22QEo/DlGC1hdjMO
 beC7/ebDyK9MdWVRLIwHlDvapPxkurjxwjotfav7wQIY7L2ZYbb/Po="
 
-  file: build/distributions/xld-powercenter-plugin-1.0.17.xldp
+  file: build/distributions/xld-powercenter-plugin-1.1.0.xldp
   on:
     all_branches: true
     tags: true
