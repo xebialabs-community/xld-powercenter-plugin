@@ -30,8 +30,8 @@
         <property name="sourceRepository" default="SOURCE_REPO" category="Advanced"/>
         <property name="srcFolderNames" kind="list_of_string"/>
         <property name="tgtFolderNames" kind="list_of_string"/>
-        <property name="objectName" kind="list_of_string"/>
-        <property name="objectType" kind="list_of_string"/>
+        <property name="objectNames" kind="list_of_string"/>
+        <property name="objectTypes" kind="list_of_string"/>
     </type>
 
 
