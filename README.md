@@ -2,6 +2,16 @@
 
 This is the initial commit of an XL Deploy/PowerCenter plugin.  It provides a configuration item for a PowerCenter container, a control script to check the connection to it, and scripts to import and delete PowerCenter objects.  It also includes several support files.
 
+### Version 1.1.0 ###
+The powercenter.PowercenterXml has been updated in version 1.1.0 for the following behavior, remaining backwards-compatible with prior versions.
+
+A new property folderNameMap has been introduced as a map_string_string kind to allow for source and target folder names to differ.  Multiple entries can be provided.  The key of each entry is the source folder name, while the value is the target folder name.  
+
+If the folderNameMap is present (not empty), then the source and target folder names in it will be used instead of any folder names in the old folderList property.
+
+The old property folderList is still present as a list_of_string kind to allow for 
+compatibility with prior versions of this plugin.
+
 # CI status #
 
 [![Build Status][xld-powercenter-travis-image] ][xld-powercenter-travis-url]
