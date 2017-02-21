@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS
+    FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALABS.
+
+-->
+<xl:export xmlns:xl="http://www.xebialabs.com/xl-export">
+  <xl:metadata>
+    <xl:exported-by>admin</xl:exported-by>
+    <xl:exported-at>2016-07-15T22:08:00.297+0000</xl:exported-at>
+    <xl:exported-format-version>5.5.1</xl:exported-format-version>
+    <xl:encryption-key-fingerprint>f6094d333c0736339884d1fe38d9c54e14019ac9</xl:encryption-key-fingerprint>
+  </xl:metadata>
+  <xl:exported-configuration-items exported-root-id="/">
+    <udm.DeploymentPackage id="Applications/powercenter/1.0" created-by="admin" created-at="2016-07-15T22:05:45.877+0000" last-modified-by="admin" last-modified-at="2016-07-15T22:05:45.877+0000">
+      <orchestrator />
+      <applicationDependencies />
+    </udm.DeploymentPackage>
+    <udm.Application id="Applications/powercenter" created-by="admin" created-at="2016-07-15T22:05:39.495+0000" last-modified-by="admin" last-modified-at="2016-07-15T22:05:45.967+0000">
+      <lastVersion>1.0</lastVersion>
+    </udm.Application>
+    <powercenter.PowercenterContainer id="Infrastructure/test powercenter/powercenter container" created-by="admin" created-at="2016-07-15T22:05:17.409+0000" last-modified-by="admin" last-modified-at="2016-07-15T22:05:17.409+0000">
+      <tags />
+      <home>/tmp</home>
+      <repository>test</repository>
+      <domain>test</domain>
+      <userName>test</userName>
+      <password>{b64}5LUBx/qD45pCHyLc13o8Sw==</password>
+    </powercenter.PowercenterContainer>
+    <powercenter.PowercenterXml id="Applications/powercenter/1.0/run1" created-by="admin" created-at="2016-07-15T22:06:23.859+0000" last-modified-by="admin" last-modified-at="2016-07-15T22:06:23.859+0000" file="Applications/powercenter/1.0/run1/dictionaryUpdater.py">
+      <tags />
+      <scanPlaceholders>true</scanPlaceholders>
+      <placeholders />
+      <checksum>4bb3a1327e7ff419bf687279cbf13a1f0b33c1b2</checksum>
+      <fileUri>jcr:dictionaryUpdater.py</fileUri>
+      <folderNames>
+        <value>test1</value>
+      </folderNames>
+      <objectNames>
+        <value>testing</value>
+      </objectNames>
+      <objectTypes>
+        <value>ooo</value>
+      </objectTypes>
+    </powercenter.PowercenterXml>
+    <udm.Environment id="Environments/test" created-by="admin" created-at="2016-07-15T22:05:28.326+0000" last-modified-by="admin" last-modified-at="2016-07-15T22:05:28.326+0000">
+      <members>
+        <ci ref="Infrastructure/test powercenter/powercenter container" />
+      </members>
+      <dictionaries />
+      <triggers />
+    </udm.Environment>
+    <overthere.LocalHost id="Infrastructure/test powercenter" created-by="admin" created-at="2016-07-15T22:04:54.863+0000" last-modified-by="admin" last-modified-at="2016-07-15T22:04:54.863+0000">
+      <tags />
+      <os>UNIX</os>
+    </overthere.LocalHost>
+  </xl:exported-configuration-items>
+</xl:export>

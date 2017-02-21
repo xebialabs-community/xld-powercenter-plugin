@@ -1,0 +1,48 @@
+<!--
+
+    THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS
+    FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALABS.
+
+-->
+<rules xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.xebialabs.com/xl-deploy/xl-rules" >
+
+    <rule name="powercenter.DeployedPowercenterXml.CREATE" scope="deployed">
+        <conditions>
+            <type>powercenter.DeployedPowercenterXml</type>
+            <operation>CREATE</operation>
+            <operation>MODIFY</operation>
+        </conditions>
+        <steps>
+            <os-script>
+                <description expression="true">"Deploy powercenter %s" % deployed.name</description>
+                <script>powercenter/powercenter_install</script>
+                <classpath-resources>
+                    <value>powercenter/impcntl.dtd</value>
+                    <value>powercenter/powercenter_controlfile.xml.ftl</value>
+                </classpath-resources>
+                <order>60</order>
+            </os-script>
+        </steps>
+    </rule>
+
+
+    <rule name="powercenter.DeployedPowercenterXml.DESTROY" scope="deployed">
+        <conditions>
+            <type>powercenter.DeployedPowercenterXml</type>
+            <operation>DESTROY</operation>
+            <expression>not previousDeployed.container.versioningEnabled</expression>
+        </conditions>
+        <steps>
+            <os-script>
+                <description expression="true">"Undeploy powercenter %s" % previousDeployed.name</description>
+                <script>powercenter/powercenter_uninstall</script>
+                <order>40</order>
+            </os-script>
+        </steps>
+    </rule>
+
+
+
+</rules>

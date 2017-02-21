@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
     THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR
@@ -5,34 +6,33 @@
     FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALABS.
 
 -->
-<?xml version="1.0" encoding="UTF-8"?>
 <synthetic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns="http://www.xebialabs.com/deployit/synthetic"
            xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
 
-<!-- KPMG followups Aug 21 2014 -->
 
-<type type="powercenter.PowercenterContainer" extends="generic.Container">
-	<property name="home"/>
-	<property name="repository"/>
-	<property name="domain"/>
-	<property name="userName"/>
-	<property name="password" password="true"/>
-	<method name="verifyConnection" label="Verify Connection" delegate="shellScript" script="powercenter/powercenter_checkConnection"/>
-</type>
+    <type type="powercenter.PowercenterContainer" extends="udm.BaseContainer">
+        <property name="host" kind="ci" referenced-type="overthere.Host" as-containment="true" />
+        <property name="home"/>
+        <property name="repository"/>
+        <property name="domain"/>
+        <property name="userName"/>
+        <property name="password" password="true"/>
+        <property name="versioningEnabled" kind="boolean" default="false" description="If set to true, undeploy will not be executed, as pmrep deleteobject doesn't work with versioning enabled."/>
+        <method name="verifyConnection" label="Verify Connection" delegate="shellScript"
+                script="powercenter/powercenter_checkConnection"/>
+    </type>
 
-<type type="powercenter.DeployedPowercenterXml" extends="generic.ExecutedScriptWithDerivedArtifact" deployable-type="powercenter.PowercenterXml" container-type="powercenter.PowercenterContainer"
-         description="Powercenter xml containting one or more Powercenter objects">
-	<generate-deployable type="powercenter.PowercenterXml" extends="generic.File"/>
-	<property name="sourceRepository" default="SOURCE_REPO" category="Advanced"/>
-	<property name="folderNames" kind="list_of_string"/>
-	<!-- hidden -->
-	<property name="classpathResources" kind="set_of_string" hidden="true" default="powercenter/impcntl.dtd"/>
-	<property name="templateClasspathResources" kind="set_of_string" hidden="true" default="powercenter/powercenter_controlfile.xml"/>
-	<property name="createScript" hidden="true" default="powercenter/powercenter_install.sh"/>
-	<property name="modifyScript" hidden="true" default="powercenter/powercenter_install.sh"/>
-	<property name="destroyScript" hidden="true" default="powercenter/powercenter_uninstall.sh"/>
-</type>
+    <type type="powercenter.DeployedPowercenterXml" extends="udm.BaseDeployedArtifact"
+          deployable-type="powercenter.PowercenterXml" container-type="powercenter.PowercenterContainer"
+          description="Powercenter xml containting one or more Powercenter objects">
+        <generate-deployable type="powercenter.PowercenterXml" extends="udm.BaseDeployableFileArtifact"/>
+        <property name="sourceRepository" default="SOURCE_REPO" category="Advanced"/>
+        <property name="folderNames" kind="list_of_string"/>
+        <property name="objectNames" kind="list_of_string"/>
+        <property name="objectTypes" kind="list_of_string"/>
+    </type>
+
 
 </synthetic>
 
