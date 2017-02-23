@@ -43,11 +43,11 @@
 
 <RESOLVECONFLICT>
 
-<!--TYPEOBJECT allows objects of certain type to apply replace/reuse upon conflict-->
+    <!--TYPEOBJECT allows objects of certain type to apply replace/reuse upon conflict-->
+    <!--TYPEOBJECT OBJECTTYPENAME="ALL" RESOLUTION="REPLACE"/ -->
 
-<!--TYPEOBJECT OBJECTTYPENAME="ALL" RESOLUTION="REPLACE"/ -->
-
-<TYPEOBJECT OBJECTTYPENAME="ALL" RESOLUTION="REPLACE"/>
+    <TYPEOBJECT OBJECTTYPENAME="ALL" RESOLUTION="REPLACE"/>
+    <TYPEOBJECT OBJECTTYPENAME="ALL" RESOLUTION="REUSE"/>
 
 </RESOLVECONFLICT>
 
