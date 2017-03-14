@@ -11,7 +11,7 @@
            xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
 
 
-    <type type="powercenter.PowercenterContainer" extends="udm.BaseContainer">
+    <type type="powercenter.PowercenterContainer" extends="generic.Container">
         <property name="host" kind="ci" referenced-type="overthere.Host" as-containment="true" />
         <property name="home"/>
         <property name="repository"/>
@@ -19,6 +19,9 @@
         <property name="userName"/>
         <property name="password" password="true"/>
         <property name="versioningEnabled" kind="boolean" default="false" description="If set to true, undeploy will not be executed, as pmrep deleteobject doesn't work with versioning enabled."/>
+
+        <property name="paramFilesDirPath" kind="string" description="Param files directory."/>
+
         <method name="verifyConnection" label="Verify Connection" delegate="shellScript"
                 script="powercenter/powercenter_checkConnection"/>
     </type>
@@ -34,6 +37,23 @@
         <property name="objectTypes" kind="list_of_string"/>
     </type>
 
+    <type type="powercenter.DeployedPowercenterParamFile" extends="generic.CopiedArtifact"
+          deployable-type="powercenter.PowercenterParamFile" container-type="powercenter.PowercenterContainer"
+          description="Powercenter param file.">
+        <generate-deployable type="powercenter.PowercenterParamFile" extends="generic.File" />
+
+        <property name="functionality" kind="string" description="The value will determine in which subdirectory within the param files directory the param file will be copied."/>
+
+        <property name="createTargetDirectory" default="true" kind="boolean" hidden="true"/>
+        <property name="targetDirectoryShared" default="true" kind="boolean" hidden="true"/>
+        <property name="targetDirectory" default="${deployed.container.paramFilesDirPath}/${deployed.functionality}/" hidden="true"/>
+        <property name="targetFile" default="${deployed.name}.param" hidden="true"/>
+    </type>
+
+    <type-modification type="powercenter.PowercenterParamFile">
+        <property name="scanPlaceholders" default="true" kind="boolean"/>
+        <property name="textFileNamesRegex" default=".+\.(dat | param)" hidden="true" />
+    </type-modification>
 
 </synthetic>
 
