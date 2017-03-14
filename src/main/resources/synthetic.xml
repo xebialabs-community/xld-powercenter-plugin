@@ -47,7 +47,7 @@
         <property name="createTargetDirectory" default="true" kind="boolean" hidden="true"/>
         <property name="targetDirectoryShared" default="true" kind="boolean" hidden="true"/>
         <property name="targetDirectory" default="${deployed.container.paramFilesDirPath}/${deployed.functionality}/" hidden="true"/>
-        <property name="targetFile" default="${deployed.name}.param" hidden="true"/>
+        <property name="targetFile" default="${deployed.name}" hidden="false"/>
     </type>
 
     <type-modification type="powercenter.PowercenterParamFile">
@@ -56,4 +56,3 @@
     </type-modification>
 
 </synthetic>
-
