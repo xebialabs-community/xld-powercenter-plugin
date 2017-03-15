@@ -12,6 +12,8 @@ If the folderNameMap is present (not empty), then the source and target folder n
 The old property folderList is still present as a list_of_string kind to allow for 
 compatibility with prior versions of this plugin.
 
+
+
 # CI status #
 
 [![Build Status][xld-powercenter-travis-image] ][xld-powercenter-travis-url]
