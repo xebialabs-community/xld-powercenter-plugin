@@ -21,6 +21,7 @@
         <property name="versioningEnabled" kind="boolean" default="false" description="If set to true, undeploy will not be executed, as pmrep deleteobject doesn't work with versioning enabled."/>
 
         <property name="paramFilesDirPath" kind="string" description="Param files directory."/>
+        <property name="filesDirPath" kind="string" description="Supplementary files directory."/>
 
         <method name="verifyConnection" label="Verify Connection" delegate="shellScript"
                 script="powercenter/powercenter_checkConnection"/>
@@ -48,11 +49,31 @@
         <property name="targetDirectoryShared" default="true" kind="boolean" hidden="true"/>
         <property name="targetDirectory" default="${deployed.container.paramFilesDirPath}/${deployed.functionality}/" hidden="true"/>
         <property name="targetFile" default="${deployed.name}" hidden="false"/>
+        <property name="preserveExistingFiles" default="true" kind="boolean" hidden="false"/>
     </type>
 
     <type-modification type="powercenter.PowercenterParamFile">
         <property name="scanPlaceholders" default="true" kind="boolean"/>
         <property name="textFileNamesRegex" default=".+\.(dat | param)" hidden="true" />
+    </type-modification>
+
+    <type type="powercenter.DeployedPowercenterFile" extends="generic.CopiedArtifact"
+          deployable-type="powercenter.PowercenterFile" container-type="powercenter.PowercenterContainer"
+          description="Powercenter files.">
+        <generate-deployable type="powercenter.PowercenterFile" extends="generic.File" />
+
+        <property name="functionality" kind="string" description="The value will determine in which subdirectory within the files directory the file will be copied."/>
+
+        <property name="createTargetDirectory" default="true" kind="boolean" hidden="true"/>
+        <property name="targetDirectoryShared" default="true" kind="boolean" hidden="true"/>
+        <property name="targetDirectory" default="${deployed.container.filesDirPath}/${deployed.functionality}/" hidden="true"/>
+        <property name="targetFile" default="${deployed.name}" hidden="false"/>
+        <property name="preserveExistingFiles" default="true" kind="boolean" hidden="false"/>
+    </type>
+
+    <type-modification type="powercenter.PowercenterFile">
+        <property name="scanPlaceholders" default="true" kind="boolean"/>
+        <property name="textFileNamesRegex" default=".+\.(dat | param | sh | ksh | txt)" hidden="false" />
     </type-modification>
 
 </synthetic>
