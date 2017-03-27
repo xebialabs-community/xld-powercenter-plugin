@@ -57,10 +57,10 @@
         <property name="textFileNamesRegex" default=".+\.(dat | param)" hidden="true" />
     </type-modification>
 
-    <type type="powercenter.DeployedPowercenterFile" extends="generic.CopiedArtifact"
-          deployable-type="powercenter.PowercenterFile" container-type="powercenter.PowercenterContainer"
-          description="Powercenter files.">
-        <generate-deployable type="powercenter.PowercenterFile" extends="generic.File" />
+    <type type="powercenter.DeployedPowercenterMiscFile" extends="generic.CopiedArtifact"
+          deployable-type="powercenter.PowercenterMiscFile" container-type="powercenter.PowercenterContainer"
+          description="Powercenter Miscellaneous files.">
+        <generate-deployable type="powercenter.PowercenterMiscFile" extends="generic.File" />
 
         <property name="functionality" kind="string" description="The value will determine in which subdirectory within the files directory the file will be copied."/>
 
@@ -71,9 +71,9 @@
         <property name="preserveExistingFiles" default="true" kind="boolean" hidden="false"/>
     </type>
 
-    <type-modification type="powercenter.PowercenterFile">
+    <type-modification type="powercenter.PowercenterMiscFile">
         <property name="scanPlaceholders" default="true" kind="boolean"/>
-        <property name="textFileNamesRegex" default=".+\.(dat | param | sh | ksh | txt)" hidden="false" />
+        <property name="textFileNamesRegex" default=".+\.(sh | ksh | txt | sql | ctl | properties | config | pl | env | dat)" hidden="false" description="A regex something like .+\.(sql | txt)"/>
     </type-modification>
 
 </synthetic>
