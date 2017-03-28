@@ -33,6 +33,7 @@
       <userName>test</userName>
       <password>{b64}5LUBx/qD45pCHyLc13o8Sw==</password>
       <paramFilesDirPath>/tmp/paramfiles/</paramFilesDirPath>
+      <filesDirPath>/tmp/miscfiles/</filesDirPath>
     </powercenter.PowercenterContainer>
     <powercenter.PowercenterXml id="Applications/powercenter/1.0/employee" created-by="admin" created-at="2016-07-15T22:06:23.859+0000" last-modified-by="admin" last-modified-at="2016-07-15T22:06:23.859+0000" file="Applications/powercenter/1.0/employee/wf_Employee_Name.XML">
       <tags />
@@ -73,6 +74,25 @@
       <fileUri>jcr:something.param</fileUri>
       <functionality>CI_Common</functionality>
     </powercenter.PowercenterParamFile>
+    <powercenter.PowercenterMiscFile id="Applications/powercenter/1.0/misc1" created-by="admin" created-at="2017-03-14T15:58:06.713+0000" last-modified-by="admin" last-modified-at="2017-03-14T16:00:24.532+0000" file="Applications/powercenter/1.0/misc1/test.sh">
+      <tags />
+      <scanPlaceholders>true</scanPlaceholders>
+      <placeholders>
+        <value>SOME_KEY</value>
+      </placeholders>
+      <filePermissions>755</filePermissions>
+      <fileUri>jcr:test.sh</fileUri>
+      <functionality>CI_Common</functionality>
+    </powercenter.PowercenterMiscFile>
+    <powercenter.PowercenterMiscFile id="Applications/powercenter/1.0/misc2" created-by="admin" created-at="2017-03-14T15:58:06.713+0000" last-modified-by="admin" last-modified-at="2017-03-14T16:00:24.532+0000" file="Applications/powercenter/1.0/misc2/some-file.txt">
+      <tags />
+      <scanPlaceholders>true</scanPlaceholders>
+      <placeholders>
+        <value>SOME_KEY</value>
+      </placeholders>
+      <fileUri>jcr:some-file.txt</fileUri>
+      <functionality>CI_Common</functionality>
+    </powercenter.PowercenterMiscFile>
     <udm.Environment id="Environments/test" created-by="admin" created-at="2016-07-15T22:05:28.326+0000" last-modified-by="admin" last-modified-at="2016-07-15T22:05:28.326+0000">
       <members>
         <ci ref="Infrastructure/test powercenter/powercenter container" />

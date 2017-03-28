@@ -48,6 +48,23 @@
         </steps>
     </rule>
 
-
+    <rule name="powercenter.DeployedPowercenterMiscFile_permissions.CREATE_MODIFY" scope="deployed">
+        <conditions>
+            <type>powercenter.DeployedPowercenterMiscFile</type>
+            <operation>CREATE</operation>
+            <operation>MODIFY</operation>
+            <expression>deployed.filePermissions is not None and deployed.container.host.os != "WINDOWS"</expression>
+        </conditions>
+        <steps>
+            <os-script>
+                <description expression="true">"Setting specified file permissions on %s" % deployed.name</description>
+                <script>powercenter/powercenter_set_file_permissions</script>
+                <order>80</order>
+                <freemarker-context>
+                    <filePath expression="true">"%s/%s" % (deployed.targetDirectory, deployed.targetFile)</filePath>
+                </freemarker-context>
+            </os-script>
+        </steps>
+    </rule>
 
 </rules>
