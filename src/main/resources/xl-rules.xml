@@ -48,6 +48,20 @@
         </steps>
     </rule>
 
-
+    <rule name="powercenter.DeployedPowercenterMiscFile_permissions.CREATE_MODIFY" scope="deployed">
+        <conditions>
+            <type>powercenter.DeployedPowercenterMiscFile</type>
+            <operation>CREATE</operation>
+            <operation>MODIFY</operation>
+            <expression>deployed.filePermissions is not None and deployed.container.os != "WINDOWS"</expression>
+        </conditions>
+        <steps>
+            <os-script>
+                <description expression="true">"Deploy powercenter %s" % deployed.name</description>
+                <script>powercenter/powercenter_set_file_permissions</script>
+                <order>80</order>
+            </os-script>
+        </steps>
+    </rule>
 
 </rules>

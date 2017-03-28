@@ -1,4 +1,5 @@
 .DS_Store
+supervisor*
 .gradle
 .idea
 build
