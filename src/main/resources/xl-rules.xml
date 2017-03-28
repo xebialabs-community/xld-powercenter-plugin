@@ -53,7 +53,7 @@
             <type>powercenter.DeployedPowercenterMiscFile</type>
             <operation>CREATE</operation>
             <operation>MODIFY</operation>
-            <expression>deployed.filePermissions is not None and deployed.container.os != "WINDOWS"</expression>
+            <expression>deployed.filePermissions is not None and deployed.container.host.os != "WINDOWS"</expression>
         </conditions>
         <steps>
             <os-script>

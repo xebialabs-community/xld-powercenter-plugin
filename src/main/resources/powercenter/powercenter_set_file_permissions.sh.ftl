@@ -14,5 +14,3 @@ res=$?
 if [ $res != 0 ] ; then
   exit $res
 fi
-
-</#if>
