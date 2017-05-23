@@ -1,13 +1,14 @@
-# xld-powercenter-plugin
+# XL Deploy PowerCenter plugin #
 
 This is the initial commit of an XL Deploy/PowerCenter plugin.  It provides a configuration item for a PowerCenter container, a control script to check the connection to it, and scripts to import and delete PowerCenter objects.  It also includes several support files.
 
-# CI status #
+## CI status ##
 
 [![Build Status][xld-powercenter-plugin-travis-image] ][xld-powercenter-plugin-travis-url]
 [![Codacy Badge][xld-powercenter-plugin-codacy-image] ][xld-powercenter-plugin-codacy-url]
 [![Code Climate][xld-powercenter-plugin-code-climate-image] ][xld-powercenter-plugin-code-climate-url]
 [![License: MIT][xld-powercenter-plugin-license-image] ][xld-powercenter-plugin-license-url]
+![Github All Releases][xld-powercenter-plugin-downloads-image]
 
 [xld-powercenter-plugin-travis-image]: https://travis-ci.org/xebialabs-community/xld-powercenter-plugin.svg?branch=master
 [xld-powercenter-plugin-travis-url]: https://travis-ci.org/xebialabs-community/xld-powercenter-plugin
@@ -17,6 +18,7 @@ This is the initial commit of an XL Deploy/PowerCenter plugin.  It provides a co
 [xld-powercenter-plugin-code-climate-url]: https://codeclimate.com/github/xebialabs-community/xld-powercenter-plugin
 [xld-powercenter-plugin-license-image]: https://img.shields.io/badge/License-MIT-yellow.svg
 [xld-powercenter-plugin-license-url]: https://opensource.org/licenses/MIT
+[xld-powercenter-plugin-downloads-image]: https://img.shields.io/github/downloads/xebialabs-community/xld-powercenter-plugin/total.svg
 
 ### Version 1.1.0 ###
 The powercenter.PowercenterXml has been updated in version 1.1.0 for the following behavior, remaining backwards-compatible with prior versions.
