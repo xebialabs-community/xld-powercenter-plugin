@@ -20,11 +20,24 @@ if [ $res != 0 ] ; then
   exit $res
 fi
 </#assign>
-find . -type f
-${pmrep} connect -r ${deployed.container.repository} -d ${deployed.container.domain} -n ${deployed.container.userName} -x ${deployed.container.password}
-${exitCodeCheck}
 
+mkdir fileSet
+cd fileSet
+FILE_SET_PATH=`pwd`
+unzip ${deployed.file.path}
+cd -
+
+echo Connect to ${deployed.container.repository}  domain ${deployed.container.domain} as ${deployed.container.userName}
+echo ${pmrep} connect -r ${deployed.container.repository} -d ${deployed.container.domain} -n ${deployed.container.userName} -x ${deployed.container.password}
+echo ${exitCodeCheck}
+echo ------------------------------------------------------------------------
+cat powercenter/powercenter_controlfile.xml
+for ORIGINAL_FILE in `find $FILE_SET_PATH -type f | sort`; do
+    echo Process $ORIGINAL_FILE
+    echo ${pmrep} objectimport -i $ORIGINAL_FILE  -c powercenter/powercenter_controlfile.xml
+    ${exitCodeCheck}
+done
 echo ------------------------------------------------------------------------
 
-${pmrep} objectimport -i ${deployed.file.path}  -c powercenter/powercenter_controlfile.xml
-${exitCodeCheck}
+
+

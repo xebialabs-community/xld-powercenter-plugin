@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright 2017 XEBIALABS
+    Copyright 2018 XEBIALABS
 
     Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -35,6 +35,17 @@
           deployable-type="powercenter.PowercenterXml" container-type="powercenter.PowercenterContainer"
           description="Powercenter xml containting one or more Powercenter objects">
         <generate-deployable type="powercenter.PowercenterXml" extends="udm.BaseDeployableFileArtifact"/>
+        <property name="sourceRepository" default="SOURCE_REPO" category="Advanced"/>
+        <property name="folderNames" kind="list_of_string" required="false" />
+        <property name="folderNameMap" kind="map_string_string" required="false" />
+        <property name="objectNames" kind="list_of_string"/>
+        <property name="objectTypes" kind="list_of_string"/>
+    </type>
+
+    <type type="powercenter.DeployedPowercenterXmlSet" extends="udm.BaseDeployedArtifact"
+          deployable-type="powercenter.PowercenterXmlSet" container-type="powercenter.PowercenterContainer"
+          description="Powercenter xml containting one or more Powercenter objects">
+        <generate-deployable type="powercenter.PowercenterXmlSet" extends="udm.BaseDeployableFileArtifact"/>
         <property name="sourceRepository" default="SOURCE_REPO" category="Advanced"/>
         <property name="folderNames" kind="list_of_string" required="false" />
         <property name="folderNameMap" kind="map_string_string" required="false" />
@@ -79,6 +90,28 @@
     </type>
 
     <type-modification type="powercenter.PowercenterMiscFile">
+        <property name="scanPlaceholders" default="true" kind="boolean"/>
+        <property name="textFileNamesRegex" default=".+\.(sh | ksh | txt | sql | ctl | properties | config | pl | env | dat)" hidden="false" description="A regex something like .+\.(sql | txt)"/>
+    </type-modification>
+
+    <type type="powercenter.DeployedPowercenterMiscFolder" extends="generic.CopiedArtifact"
+          deployable-type="powercenter.PowercenterMiscFolder" container-type="powercenter.PowercenterContainer"
+          description="Powercenter Miscellaneous files.">
+        <generate-deployable type="powercenter.PowercenterMiscFolder" extends="generic.Folder" />
+
+        <property name="functionality" kind="string" description="The value will determine in which subdirectory within the files directory the file will be copied."/>
+
+        <property name="targetDirectory" default="${deployed.container.filesDirPath}/${deployed.functionality}/" hidden="true"/>
+        <property name="targetFile" default="${deployed.name}" hidden="true"/>
+        <property name="createTargetDirectory" default="true" kind="boolean" hidden="true"/>
+        <property name="targetDirectoryShared" default="true" kind="boolean" hidden="true"/>
+        <property name="filePermissions" required="false" description="If set, the UNIX file permissions to be applied to the artifact, e.g. 644">
+            <rule type="regex" pattern="[0-7]{3}"/>
+        </property>
+        <property name="preserveExistingFolder" default="true" kind="boolean" hidden="false"/>
+    </type>
+
+    <type-modification type="powercenter.PowercenterMiscFolder">
         <property name="scanPlaceholders" default="true" kind="boolean"/>
         <property name="textFileNamesRegex" default=".+\.(sh | ksh | txt | sql | ctl | properties | config | pl | env | dat)" hidden="false" description="A regex something like .+\.(sql | txt)"/>
     </type-modification>

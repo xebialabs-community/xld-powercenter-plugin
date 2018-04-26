@@ -14,10 +14,10 @@ apply plugin: 'maven'
 
 xlDocker {
   compileImage = 'xebialabs/xld_dev_compile'
-  compileVersion = 'v6.2.1.1'
+  compileVersion = 'v7.6.0.1'
   runImage = 'xebialabs/xld_dev_run'
-  runVersion = 'v6.2.1.1'
-  runPortMapping = '14516:4516'
+  runVersion = 'v7.6.0.1'
+  runPortMapping = '24516:4516'
 }
 
 if (!project.hasProperty('release.scope')) {

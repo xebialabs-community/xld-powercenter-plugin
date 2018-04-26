@@ -1,6 +1,6 @@
 <!--
 
-    Copyright 2017 XEBIALABS
+    Copyright 2018 XEBIALABS
 
     Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -32,10 +32,30 @@
         </steps>
     </rule>
 
+    <rule name="powercenter.DeployedPowercenterXmlSet.CREATE" scope="deployed">
+        <conditions>
+            <type>powercenter.DeployedPowercenterXmlSet</type>
+            <operation>CREATE</operation>
+            <operation>MODIFY</operation>
+        </conditions>
+        <steps>
+            <os-script>
+                <description expression="true">"Deploy powercenter %s" % deployed.name</description>
+                <script>powercenter/powercenter_install_set</script>
+                <classpath-resources>
+                    <value>powercenter/impcntl.dtd</value>
+                    <value>powercenter/powercenter_controlfile.xml.ftl</value>
+                </classpath-resources>
+                <order>60</order>
+            </os-script>
+        </steps>
+    </rule>
+
 
     <rule name="powercenter.DeployedPowercenterXml.DESTROY" scope="deployed">
         <conditions>
             <type>powercenter.DeployedPowercenterXml</type>
+            <type>powercenter.DeployedPowercenterXmlSet</type>
             <operation>DESTROY</operation>
             <expression>not previousDeployed.container.versioningEnabled</expression>
         </conditions>
@@ -62,6 +82,25 @@
                 <order>80</order>
                 <freemarker-context>
                     <filePath expression="true">"%s/%s" % (deployed.targetDirectory, deployed.targetFile)</filePath>
+                </freemarker-context>
+            </os-script>
+        </steps>
+    </rule>
+
+    <rule name="powercenter.DeployedPowercenterMiscFolder_permissions.CREATE_MODIFY" scope="deployed">
+        <conditions>
+            <type>powercenter.DeployedPowercenterMiscFolder</type>
+            <operation>CREATE</operation>
+            <operation>MODIFY</operation>
+            <expression>deployed.filePermissions is not None and deployed.container.host.os != "WINDOWS"</expression>
+        </conditions>
+        <steps>
+            <os-script>
+                <description expression="true">"Setting specified file permissions on %s" % deployed.targetDirectory</description>
+                <script>powercenter/powercenter_set_folder_permissions</script>
+                <order>80</order>
+                <freemarker-context>
+                    <filePath expression="true">"%s" % (deployed.targetDirectory)</filePath>
                 </freemarker-context>
             </os-script>
         </steps>
