@@ -114,5 +114,30 @@
       <restrictToContainers />
       <restrictToApplications />
     </udm.Dictionary>
+    <udm.Environment id="Environments/testWin" created-by="admin" created-at="2016-07-15T22:05:28.326+0000" last-modified-by="admin" last-modified-at="2016-07-15T22:05:28.326+0000">
+      <members>
+        <ci ref="Infrastructure/test powercenterWin/powercenter container" />
+      </members>
+      <dictionaries>
+        <ci ref="Environments/test_dict" />
+      </dictionaries>
+      <triggers />
+    </udm.Environment>
+    <overthere.SmbHost id="Infrastructure/test powercenterWin" created-by="admin" created-at="2016-07-15T22:04:54.863+0000" last-modified-by="admin" last-modified-at="2016-07-15T22:04:54.863+0000">
+      <tags />
+      <os>Windows</os>
+      <address>192.168.2.102</address>
+      <username>root</username>
+    </overthere.SmbHost>
+    <powercenter.PowercenterContainer id="Infrastructure/test powercenterWin/powercenter container" created-by="admin" created-at="2016-07-15T22:05:17.409+0000" last-modified-by="admin" last-modified-at="2016-07-15T22:05:17.409+0000">
+      <tags />
+      <home>D:\powercenter</home>
+      <repository>test</repository>
+      <domain>test</domain>
+      <userName>test</userName>
+      <password>{b64}5LUBx/qD45pCHyLc13o8Sw==</password>
+      <paramFilesDirPath>D:\powercenter\paramfiles\</paramFilesDirPath>
+      <filesDirPath>D:\powercenter\miscfiles</filesDirPath>
+    </powercenter.PowercenterContainer>
   </xl:exported-configuration-items>
 </xl:export>

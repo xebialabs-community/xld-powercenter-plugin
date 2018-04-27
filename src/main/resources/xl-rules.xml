@@ -45,6 +45,7 @@
                 <classpath-resources>
                     <value>powercenter/impcntl.dtd</value>
                     <value>powercenter/powercenter_controlfile.xml.ftl</value>
+                    <value>powercenter/powercenter_install_set.ps1.ftl</value>
                 </classpath-resources>
                 <order>60</order>
             </os-script>
@@ -55,7 +56,6 @@
     <rule name="powercenter.DeployedPowercenterXml.DESTROY" scope="deployed">
         <conditions>
             <type>powercenter.DeployedPowercenterXml</type>
-            <type>powercenter.DeployedPowercenterXmlSet</type>
             <operation>DESTROY</operation>
             <expression>not previousDeployed.container.versioningEnabled</expression>
         </conditions>
@@ -96,7 +96,7 @@
         </conditions>
         <steps>
             <os-script>
-                <description expression="true">"Setting specified file permissions on %s" % deployed.targetDirectory</description>
+                <description expression="true">"Setting specified file permissions on %s/%s" % (deployed.container.filesDirPath,deployed.functionality)</description>
                 <script>powercenter/powercenter_set_folder_permissions</script>
                 <order>80</order>
                 <freemarker-context>

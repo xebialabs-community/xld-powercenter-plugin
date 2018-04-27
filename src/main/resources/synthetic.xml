@@ -45,7 +45,7 @@
     <type type="powercenter.DeployedPowercenterXmlSet" extends="udm.BaseDeployedArtifact"
           deployable-type="powercenter.PowercenterXmlSet" container-type="powercenter.PowercenterContainer"
           description="Powercenter xml containting one or more Powercenter objects">
-        <generate-deployable type="powercenter.PowercenterXmlSet" extends="udm.BaseDeployableFileArtifact"/>
+        <generate-deployable type="powercenter.PowercenterXmlSet" extends="udm.BaseDeployableFolderArtifact"/>
         <property name="sourceRepository" default="SOURCE_REPO" category="Advanced"/>
         <property name="folderNames" kind="list_of_string" required="false" />
         <property name="folderNameMap" kind="map_string_string" required="false" />

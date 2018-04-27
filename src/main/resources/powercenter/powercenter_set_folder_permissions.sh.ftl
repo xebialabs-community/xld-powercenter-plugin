@@ -11,14 +11,7 @@
 -->
 #!/bin/bash
 
-for ORIGINAL_FILE in `find . -type f | sed "s/.*zip\///g"`; do
-    # FILE_TO_CHMOD=${deployed.container.filesDirPath}/${deployed.targetDirectory}/$ORIGINAL_FILE
-    FILE_TO_CHMOD=${deployed.targetDirectory}/$ORIGINAL_FILE
-    echo Setting file permissions on $FILE_TO_CHMOD to ${deployed.filePermissions}
-    chmod -R ${deployed.filePermissions} "$FILE_TO_CHMOD"
-    ls -l "$FILE_TO_CHMOD"
-done
-
+chmod -Rv ${deployed.filePermissions} ${deployed.container.filesDirPath}/${deployed.functionality}
 res=$?
 if [ $res != 0 ] ; then
   exit $res
