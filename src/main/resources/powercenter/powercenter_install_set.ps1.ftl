@@ -10,28 +10,22 @@
 
 -->
 
-export INFA_HOME=${deployed.container.home}
-export LD_LIBRARY_PATH=${deployed.container.home}/server/bin
-
-<#assign pmrep=deployed.container.home + "/server/bin/pmrep">
-<#assign exitCodeCheck>
-res=$?
-if [ $res != 0 ] ; then
-  exit $res
-fi
-</#assign>
-
-echo Connect to ${deployed.container.repository}  domain ${deployed.container.domain} as ${deployed.container.userName}
+<#assign pmrep=deployed.container.home + "\\server\\bin\\pmrep">
+Write-Host "Connect to repository ${deployed.container.repository}  domain ${deployed.container.domain} as ${deployed.container.userName}"
 ${pmrep} connect -r ${deployed.container.repository} -d ${deployed.container.domain} -n ${deployed.container.userName} -x ${deployed.container.password}
-${exitCodeCheck}
-#cat powercenter/powercenter_controlfile.xml
-for ORIGINAL_FILE in `find ${deployed.file.path} -type f | sort`; do
-    echo ------------------------------------------------------------------------
-    echo Process $ORIGINAL_FILE
-    ${pmrep} objectimport -i $ORIGINAL_FILE  -c powercenter/powercenter_controlfile.xml
-    ${exitCodeCheck}
-done
-echo ------------------------------------------------------------------------
+$res=$?
+if ( ! $res ) {
+  exit $res
+}
 
-
-
+$files = Get-ChildItem ${deployed.file.path} -recurse | Where-Object {$_.PSIsContainer -eq $False} | % {$_.FullName}
+ForEach ( $FILE_NAME in $files ) {
+    Write-Host "----------------------------------------------------------------------"
+	Write-Host "Process $FILE_NAME"
+    ${pmrep} objectimport -i $FILE_NAME  -c powercenter/powercenter_controlfile.xml
+}
+$res=$?
+if ( ! $res ) {
+  exit $res
+}
+Write-Host "----------------------------------------------------------------------"

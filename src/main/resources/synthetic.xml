@@ -17,15 +17,18 @@
 
     <type type="powercenter.PowercenterContainer" extends="generic.Container">
         <property name="host" kind="ci" referenced-type="overthere.Host" as-containment="true" />
-        <property name="home"/>
-        <property name="repository"/>
-        <property name="domain"/>
-        <property name="userName"/>
+        <property name="home" category="Powercenter"/>
+        <property name="repository" category="Powercenter"/>
+        <property name="domain" category="Powercenter"/>
+        <property name="userName" category="Powercenter"/>
         <property name="password" password="true"/>
-        <property name="versioningEnabled" kind="boolean" default="false" description="If set to true, undeploy will not be executed, as pmrep deleteobject doesn't work with versioning enabled."/>
+        <property name="versioningEnabled" kind="boolean" default="false" category="Powercenter"
+                  description="If set to true, undeploy will not be executed, as pmrep deleteobject doesn't work with versioning enabled."/>
 
-        <property name="paramFilesDirPath" kind="string" description="Param files directory."/>
-        <property name="filesDirPath" kind="string" description="Supplementary files directory."/>
+        <property name="paramFilesDirPath" kind="string"  category="Powercenter"
+                  description="Param files directory."/>
+        <property name="filesDirPath" kind="string" category="Powercenter"
+                  description="Supplementary files directory."/>
 
         <method name="verifyConnection" label="Verify Connection" delegate="shellScript"
                 script="powercenter/powercenter_checkConnection"/>
@@ -35,22 +38,22 @@
           deployable-type="powercenter.PowercenterXml" container-type="powercenter.PowercenterContainer"
           description="Powercenter xml containting one or more Powercenter objects">
         <generate-deployable type="powercenter.PowercenterXml" extends="udm.BaseDeployableFileArtifact"/>
-        <property name="sourceRepository" default="SOURCE_REPO" category="Advanced"/>
-        <property name="folderNames" kind="list_of_string" required="false" />
-        <property name="folderNameMap" kind="map_string_string" required="false" />
-        <property name="objectNames" kind="list_of_string"/>
-        <property name="objectTypes" kind="list_of_string"/>
+        <property name="sourceRepository" default="SOURCE_REPO" category="Powercenter"/>
+        <property name="folderNames" kind="list_of_string" required="false" category="Powercenter"/>
+        <property name="folderNameMap" kind="map_string_string" required="false" category="Powercenter"/>
+        <property name="objectNames" kind="list_of_string" category="Powercenter"/>
+        <property name="objectTypes" kind="list_of_string" category="Powercenter"/>
     </type>
 
     <type type="powercenter.DeployedPowercenterXmlSet" extends="udm.BaseDeployedArtifact"
           deployable-type="powercenter.PowercenterXmlSet" container-type="powercenter.PowercenterContainer"
           description="Powercenter xml containting one or more Powercenter objects">
-        <generate-deployable type="powercenter.PowercenterXmlSet" extends="udm.BaseDeployableFileArtifact"/>
-        <property name="sourceRepository" default="SOURCE_REPO" category="Advanced"/>
-        <property name="folderNames" kind="list_of_string" required="false" />
-        <property name="folderNameMap" kind="map_string_string" required="false" />
-        <property name="objectNames" kind="list_of_string"/>
-        <property name="objectTypes" kind="list_of_string"/>
+        <generate-deployable type="powercenter.PowercenterXmlSet" extends="udm.BaseDeployableFolderArtifact"/>
+        <property name="sourceRepository" default="SOURCE_REPO" category="Powercenter"/>
+        <property name="folderNames" kind="list_of_string" required="false" category="Powercenter" />
+        <property name="folderNameMap" kind="map_string_string" required="false" category="Powercenter" />
+        <property name="objectNames" kind="list_of_string" category="Powercenter"/>
+        <property name="objectTypes" kind="list_of_string" category="Powercenter"/>
     </type>
 
     <type type="powercenter.DeployedPowercenterParamFile" extends="generic.CopiedArtifact"
@@ -58,18 +61,19 @@
           description="Powercenter param file.">
         <generate-deployable type="powercenter.PowercenterParamFile" extends="generic.File" />
 
-        <property name="functionality" kind="string" description="The value will determine in which subdirectory within the param files directory the param file will be copied."/>
+        <property name="functionality" kind="string" category="Powercenter"
+                  description="The value will determine in which subdirectory within the param files directory the param file will be copied."/>
 
-        <property name="createTargetDirectory" default="true" kind="boolean" hidden="true"/>
-        <property name="targetDirectoryShared" default="true" kind="boolean" hidden="true"/>
-        <property name="targetDirectory" default="${deployed.container.paramFilesDirPath}/${deployed.functionality}/" hidden="true"/>
-        <property name="targetFile" default="${deployed.name}" hidden="false"/>
-        <property name="preserveExistingFiles" default="true" kind="boolean" hidden="false"/>
+        <property name="createTargetDirectory" default="true" kind="boolean" hidden="true" category="Powercenter"/>
+        <property name="targetDirectoryShared" default="true" kind="boolean" hidden="true" category="Powercenter"/>
+        <property name="targetDirectory" default="${deployed.container.paramFilesDirPath}/${deployed.functionality}/" hidden="true" category="Powercenter"/>
+        <property name="targetFile" default="${deployed.name}" hidden="false" category="Powercenter"/>
+        <property name="preserveExistingFiles" default="true" kind="boolean" hidden="false" category="Powercenter"/>
     </type>
 
     <type-modification type="powercenter.PowercenterParamFile">
-        <property name="scanPlaceholders" default="true" kind="boolean"/>
-        <property name="textFileNamesRegex" default=".+\.(dat | param)" hidden="true" />
+        <property name="scanPlaceholders" default="true" kind="boolean" category="Powercenter"/>
+        <property name="textFileNamesRegex" default=".+\.(dat | param)" hidden="true" category="Powercenter"/>
     </type-modification>
 
     <type type="powercenter.DeployedPowercenterMiscFile" extends="generic.CopiedArtifact"
@@ -77,21 +81,24 @@
           description="Powercenter Miscellaneous files.">
         <generate-deployable type="powercenter.PowercenterMiscFile" extends="generic.File" />
 
-        <property name="functionality" kind="string" description="The value will determine in which subdirectory within the files directory the file will be copied."/>
+        <property name="functionality" kind="string" category="Powercenter"
+                  description="The value will determine in which subdirectory within the files directory the file will be copied."/>
 
-        <property name="createTargetDirectory" default="true" kind="boolean" hidden="true"/>
-        <property name="targetDirectoryShared" default="true" kind="boolean" hidden="true"/>
-        <property name="targetDirectory" default="${deployed.container.filesDirPath}/${deployed.functionality}/" hidden="true"/>
-        <property name="targetFile" default="${deployed.name}" hidden="false"/>
-        <property name="filePermissions" required="false" description="If set, the UNIX file permissions to be applied to the artifact, e.g. 644">
+        <property name="createTargetDirectory" default="true" kind="boolean" hidden="true" category="Powercenter"/>
+        <property name="targetDirectoryShared" default="true" kind="boolean" hidden="true" category="Powercenter"/>
+        <property name="targetDirectory" default="${deployed.container.filesDirPath}/${deployed.functionality}/" hidden="true" category="Powercenter"/>
+        <property name="targetFile" default="${deployed.name}" hidden="false" category="Powercenter"/>
+        <property name="filePermissions" required="false" category="Powercenter"
+                  description="If set, the UNIX file permissions to be applied to the artifact, e.g. 644">
             <rule type="regex" pattern="[0-7]{3}"/>
          </property>
-        <property name="preserveExistingFiles" default="true" kind="boolean" hidden="false"/>
+        <property name="preserveExistingFiles" default="true" kind="boolean" hidden="false" category="Powercenter"/>
     </type>
 
     <type-modification type="powercenter.PowercenterMiscFile">
-        <property name="scanPlaceholders" default="true" kind="boolean"/>
-        <property name="textFileNamesRegex" default=".+\.(sh | ksh | txt | sql | ctl | properties | config | pl | env | dat)" hidden="false" description="A regex something like .+\.(sql | txt)"/>
+        <property name="scanPlaceholders" default="true" kind="boolean" category="Powercenter"/>
+        <property name="textFileNamesRegex" default=".+\.(sh | ksh | txt | sql | ctl | properties | config | pl | env | dat)" hidden="false" category="Powercenter"
+                  description="A regex something like .+\.(sql | txt)"/>
     </type-modification>
 
     <type type="powercenter.DeployedPowercenterMiscFolder" extends="generic.CopiedArtifact"
@@ -101,19 +108,20 @@
 
         <property name="functionality" kind="string" description="The value will determine in which subdirectory within the files directory the file will be copied."/>
 
-        <property name="targetDirectory" default="${deployed.container.filesDirPath}/${deployed.functionality}/" hidden="true"/>
-        <property name="targetFile" default="${deployed.name}" hidden="true"/>
-        <property name="createTargetDirectory" default="true" kind="boolean" hidden="true"/>
-        <property name="targetDirectoryShared" default="true" kind="boolean" hidden="true"/>
-        <property name="filePermissions" required="false" description="If set, the UNIX file permissions to be applied to the artifact, e.g. 644">
+        <property name="targetDirectory" default="${deployed.container.filesDirPath}/${deployed.functionality}/" hidden="true" category="Powercenter"/>
+        <property name="targetFile" default="${deployed.name}" hidden="true" category="Powercenter"/>
+        <property name="createTargetDirectory" default="true" kind="boolean" hidden="true" category="Powercenter"/>
+        <property name="targetDirectoryShared" default="true" kind="boolean" hidden="true" category="Powercenter"/>
+        <property name="filePermissions" required="false" category="Powercenter"
+                  description="If set, the UNIX file permissions to be applied to the artifact, e.g. 644">
             <rule type="regex" pattern="[0-7]{3}"/>
         </property>
-        <property name="preserveExistingFolder" default="true" kind="boolean" hidden="false"/>
+        <property name="preserveExistingFolder" default="true" kind="boolean" hidden="false" category="Powercenter"/>
     </type>
 
     <type-modification type="powercenter.PowercenterMiscFolder">
-        <property name="scanPlaceholders" default="true" kind="boolean"/>
-        <property name="textFileNamesRegex" default=".+\.(sh | ksh | txt | sql | ctl | properties | config | pl | env | dat)" hidden="false" description="A regex something like .+\.(sql | txt)"/>
+        <property name="scanPlaceholders" default="true" kind="boolean" category="Powercenter"/>
+        <property name="textFileNamesRegex" default=".+\.(sh | ksh | txt | sql | ctl | properties | config | pl | env | dat)" hidden="false" description="A regex something like .+\.(sql | txt)" category="Powercenter"/>
     </type-modification>
 
 </synthetic>
