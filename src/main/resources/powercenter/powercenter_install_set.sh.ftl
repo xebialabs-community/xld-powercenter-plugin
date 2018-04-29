@@ -9,38 +9,29 @@
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -->
-<#--
 
-    THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS
-    FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALABS.
+export INFA_HOME=${deployed.container.home}
+export LD_LIBRARY_PATH=${deployed.container.home}/server/bin
 
--->
-export INFA_HOME=${previousDeployed.container.home}
-export LD_LIBRARY_PATH=${previousDeployed.container.home}/server/bin
-
-<#assign pmrep=previousDeployed.container.home + "/server/bin/pmrep">
+<#assign pmrep=deployed.container.home + "/server/bin/pmrep">
 <#assign exitCodeCheck>
 res=$?
 if [ $res != 0 ] ; then
   exit $res
 fi
 </#assign>
-${pmrep} connect -r ${previousDeployed.container.repository} -d ${previousDeployed.container.domain} -n ${previousDeployed.container.userName} -x ${previousDeployed.container.password}
+
+echo Connect to ${deployed.container.repository}  domain ${deployed.container.domain} as ${deployed.container.userName}
+${pmrep} connect -r ${deployed.container.repository} -d ${deployed.container.domain} -n ${deployed.container.userName} -x ${deployed.container.password}
 ${exitCodeCheck}
-
-<#list previousDeployed.folderNames as folderName>
-<#list previousDeployed.objectNames as objectName>
-<#list previousDeployed.objectTypes as objectType>
-${pmrep} deleteobject -o ${objectType} -f ${folderName} -n ${objectName}
-</#list>
-</#list>
-</#list>
-
-
-${exitCodeCheck}
-
+#cat powercenter/powercenter_controlfile.xml
+for ORIGINAL_FILE in `find ${deployed.file.path} -type f | sort`; do
+    echo ------------------------------------------------------------------------
+    echo Process $ORIGINAL_FILE
+    ${pmrep} objectimport -i $ORIGINAL_FILE  -c powercenter/powercenter_controlfile.xml
+    ${exitCodeCheck}
+done
 echo ------------------------------------------------------------------------
 
-#echo Powercenter objects can not be deleted from a versioned repository using command line interface.
-#echo NB: Use Repository Manager to delete object manually!
+
+

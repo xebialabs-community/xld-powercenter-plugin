@@ -10,21 +10,22 @@
 
 -->
 
-export INFA_HOME=${deployed.container.home}
-export LD_LIBRARY_PATH=${deployed.container.home}/server/bin
-
-<#assign pmrep=deployed.container.home + "/server/bin/pmrep">
-<#assign exitCodeCheck>
-res=$?
-if [ $res != 0 ] ; then
-  exit $res
-fi
-</#assign>
-find . -type f
+<#assign pmrep=deployed.container.home + "\\server\\bin\\pmrep">
+Write-Host "Connect to repository ${deployed.container.repository}  domain ${deployed.container.domain} as ${deployed.container.userName}"
 ${pmrep} connect -r ${deployed.container.repository} -d ${deployed.container.domain} -n ${deployed.container.userName} -x ${deployed.container.password}
-${exitCodeCheck}
+$res=$?
+if ( ! $res ) {
+  exit $res
+}
 
-echo ------------------------------------------------------------------------
-
-${pmrep} objectimport -i ${deployed.file.path}  -c powercenter/powercenter_controlfile.xml
-${exitCodeCheck}
+$files = Get-ChildItem ${deployed.file.path} -recurse | Where-Object {$_.PSIsContainer -eq $False} | % {$_.FullName}
+ForEach ( $FILE_NAME in $files ) {
+    Write-Host "----------------------------------------------------------------------"
+	Write-Host "Process $FILE_NAME"
+    ${pmrep} objectimport -i $FILE_NAME  -c powercenter/powercenter_controlfile.xml
+}
+$res=$?
+if ( ! $res ) {
+  exit $res
+}
+Write-Host "----------------------------------------------------------------------"

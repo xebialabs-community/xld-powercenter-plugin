@@ -9,22 +9,10 @@
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -->
+#!/bin/bash
 
-export INFA_HOME=${deployed.container.home}
-export LD_LIBRARY_PATH=${deployed.container.home}/server/bin
-
-<#assign pmrep=deployed.container.home + "/server/bin/pmrep">
-<#assign exitCodeCheck>
+chmod -Rv ${deployed.filePermissions} ${deployed.container.filesDirPath}/${deployed.functionality}
 res=$?
 if [ $res != 0 ] ; then
   exit $res
 fi
-</#assign>
-find . -type f
-${pmrep} connect -r ${deployed.container.repository} -d ${deployed.container.domain} -n ${deployed.container.userName} -x ${deployed.container.password}
-${exitCodeCheck}
-
-echo ------------------------------------------------------------------------
-
-${pmrep} objectimport -i ${deployed.file.path}  -c powercenter/powercenter_controlfile.xml
-${exitCodeCheck}
