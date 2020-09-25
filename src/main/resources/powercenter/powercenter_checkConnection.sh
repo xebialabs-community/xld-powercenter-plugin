@@ -11,7 +11,7 @@
 export INFA_HOME=${container.home}
 export LD_LIBRARY_PATH=${container.home}/server/bin
 
-<#assign pmrep=container.home + "/server/bin/pmrep">
+<#if container.customPmrepPath?has_content><#assign pmrep="${container.home}/${container.customPmrepPath}"><#else><#assign pmrep="${container.home}/server/bin/pmrep"></#if>
 <#assign exitCodeCheck>
 res=$?
 if [ $res != 0 ] ; then

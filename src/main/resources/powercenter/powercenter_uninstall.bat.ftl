@@ -11,7 +11,7 @@
 -->
 
 @echo off
-<#assign pmrep=previousDeployed.container.home + "/server/bin/pmrep">
+<#if previousDeployed.container.customPmrepPath?has_content><#assign pmrep="${previousDeployed.container.home}\\${previousDeployed.container.customPmrepPath}"><#else><#assign pmrep="${previousDeployed.container.home}\\server\\bin\\pmrep"></#if>
 ${pmrep} connect -r ${previousDeployed.container.repository} -d ${previousDeployed.container.domain} -n ${previousDeployed.container.userName} -x ${previousDeployed.container.password}
 
 <#list previousDeployed.folderNames as folderName>

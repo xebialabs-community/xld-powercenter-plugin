@@ -17,11 +17,13 @@
 
     <type type="powercenter.PowercenterContainer" extends="generic.Container">
         <property name="host" kind="ci" referenced-type="overthere.Host" as-containment="true" />
-        <property name="home" category="Powercenter"/>
+        <property name="home" category="Powercenter" description="Path for the home directory"/>
+        <property name="customPmrepPath" label="Custom PMREP Path" required="false" category="Powercenter"
+                  description="If the pmrep binary is not at &quot;server\bin\pmrep&quot; (Windows) or &quot;server/bin/pmrep&quot; (Linux), relative to the home directory, please specify the relative path here.  If left blank, the default location will be used."/>
         <property name="repository" category="Powercenter"/>
         <property name="domain" category="Powercenter"/>
         <property name="userName" category="Powercenter"/>
-        <property name="password" password="true"/>
+        <property name="password" password="true" category="Powercenter"/>
         <property name="versioningEnabled" kind="boolean" default="false" category="Powercenter"
                   description="If set to true, undeploy will not be executed, as pmrep deleteobject doesn't work with versioning enabled."/>
 

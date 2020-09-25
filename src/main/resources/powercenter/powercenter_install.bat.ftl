@@ -11,8 +11,7 @@
 -->
 
 @echo off
-
-<#assign pmrep=deployed.container.home + "\\server\\bin\\pmrep">
+<#if deployed.container.customPmrepPath?has_content><#assign pmrep="${deployed.container.home}\\${deployed.container.customPmrepPath}"><#else><#assign pmrep="${deployed.container.home}\\server\\bin\\pmrep"></#if>
 ${pmrep} connect -r ${deployed.container.repository} -d ${deployed.container.domain} -n ${deployed.container.userName} -x ${deployed.container.password}
 
 ${pmrep} objectimport -i ${deployed.file.path}  -c powercenter/powercenter_controlfile.xml
