@@ -12,7 +12,7 @@
 
 @echo off
 <#if previousDeployed.container.customPmrepPath?has_content><#assign pmrep="${previousDeployed.container.home}\\${previousDeployed.container.customPmrepPath}"><#else><#assign pmrep="${previousDeployed.container.home}\\server\\bin\\pmrep"></#if>
-${pmrep} connect -r ${previousDeployed.container.repository} -d ${previousDeployed.container.domain} -n ${previousDeployed.container.userName} -x ${previousDeployed.container.password}
+${pmrep} connect -r ${previousDeployed.container.repository} -d ${previousDeployed.container.domain} -n "${previousDeployed.container.userName}" -x "${previousDeployed.container.password}"<#if previousDeployed.container.userSecurityDomain?has_content> -s "${previousDeployed.container.userSecurityDomain}"</#if>
 
 <#list previousDeployed.folderNames as folderName>
 <#list previousDeployed.objectNames as objectName>

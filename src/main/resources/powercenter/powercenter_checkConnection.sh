@@ -18,5 +18,5 @@ if [ $res != 0 ] ; then
   exit $res
 fi
 </#assign>
-${pmrep} connect -r ${container.repository} -d ${container.domain} -n ${container.userName} -x ${container.password}
+${pmrep} connect -r ${container.repository} -d ${container.domain} -n "${container.userName}" -x "${container.password}"<#if container.userSecurityDomain?has_content> -s "${container.userSecurityDomain}"</#if>
 ${exitCodeCheck}

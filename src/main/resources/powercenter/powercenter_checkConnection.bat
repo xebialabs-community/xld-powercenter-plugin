@@ -10,4 +10,4 @@
 
 @echo off
 <#if container.customPmrepPath?has_content><#assign pmrep="${container.home}\\${container.customPmrepPath}"><#else><#assign pmrep="${container.home}\\server\\bin\\pmrep"></#if>
-${pmrep} connect -r ${container.repository} -d ${container.domain} -n ${container.userName} -x ${container.password}
+${pmrep} connect -r ${container.repository} -d ${container.domain} -n "${container.userName}" -x "${container.password}"<#if container.userSecurityDomain?has_content> -s "${container.userSecurityDomain}"</#if>

@@ -22,7 +22,7 @@ fi
 </#assign>
 
 echo Connect to ${deployed.container.repository}  domain ${deployed.container.domain} as ${deployed.container.userName}
-${pmrep} connect -r ${deployed.container.repository} -d ${deployed.container.domain} -n ${deployed.container.userName} -x ${deployed.container.password}
+${pmrep} connect -r ${deployed.container.repository} -d ${deployed.container.domain} -n "${deployed.container.userName}" -x "${deployed.container.password}"<#if deployed.container.userSecurityDomain?has_content> -s "${deployed.container.userSecurityDomain}"</#if>
 ${exitCodeCheck}
 #cat powercenter/powercenter_controlfile.xml
 for ORIGINAL_FILE in `find ${deployed.file.path} -type f | sort`; do

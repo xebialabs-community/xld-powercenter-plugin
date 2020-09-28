@@ -26,7 +26,7 @@ if [ $res != 0 ] ; then
   exit $res
 fi
 </#assign>
-${pmrep} connect -r ${previousDeployed.container.repository} -d ${previousDeployed.container.domain} -n ${previousDeployed.container.userName} -x ${previousDeployed.container.password}
+${pmrep} connect -r ${previousDeployed.container.repository} -d ${previousDeployed.container.domain} -n "${previousDeployed.container.userName}" -x "${previousDeployed.container.password}"<#if previousDeployed.container.userSecurityDomain?has_content> -s "${previousDeployed.container.userSecurityDomain}"</#if>
 ${exitCodeCheck}
 
 <#list previousDeployed.folderNames as folderName>

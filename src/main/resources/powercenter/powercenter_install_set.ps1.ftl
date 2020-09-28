@@ -12,7 +12,7 @@
 
 <#if deployed.container.customPmrepPath?has_content><#assign pmrep="${deployed.container.home}\\${deployed.container.customPmrepPath}"><#else><#assign pmrep="${deployed.container.home}\\server\\bin\\pmrep"></#if>
 Write-Host "Connect to repository ${deployed.container.repository}  domain ${deployed.container.domain} as ${deployed.container.userName}"
-${pmrep} connect -r ${deployed.container.repository} -d ${deployed.container.domain} -n ${deployed.container.userName} -x ${deployed.container.password}
+${pmrep} connect -r ${deployed.container.repository} -d ${deployed.container.domain} -n "${deployed.container.userName}" -x "${deployed.container.password}"<#if deployed.container.userSecurityDomain?has_content> -s "${deployed.container.userSecurityDomain}"</#if>
 $res=$?
 if ( ! $res ) {
   exit $res

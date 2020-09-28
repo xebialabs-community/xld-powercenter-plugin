@@ -21,7 +21,7 @@ if [ $res != 0 ] ; then
 fi
 </#assign>
 find . -type f
-${pmrep} connect -r ${deployed.container.repository} -d ${deployed.container.domain} -n ${deployed.container.userName} -x ${deployed.container.password}
+${pmrep} connect -r ${deployed.container.repository} -d ${deployed.container.domain} -n "${deployed.container.userName}" -x "${deployed.container.password}"<#if deployed.container.userSecurityDomain?has_content> -s "${deployed.container.userSecurityDomain}"</#if>
 ${exitCodeCheck}
 
 echo ------------------------------------------------------------------------
