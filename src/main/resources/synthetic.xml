@@ -29,10 +29,10 @@
         <property name="versioningEnabled" kind="boolean" default="false" category="Powercenter"
                   description="If set to true, undeploy will not be executed, as pmrep deleteobject doesn't work with versioning enabled."/>
 
-        <property name="paramFilesDirPath" kind="string"  category="Powercenter"
-                  description="Param files directory."/>
-        <property name="filesDirPath" kind="string" category="Powercenter"
-                  description="Supplementary files directory."/>
+        <property name="paramFilesDirPath" kind="string" required="false" category="Powercenter"
+                  description="This param files directory must be specified for use cases like Param File, Misc. File, and Misc. Folder deployments."/>
+        <property name="filesDirPath" kind="string" required="false" category="Powercenter"
+                  description="This supplementary files directory must be specified for use cases like Param File, Misc. File, and Misc. Folder deployments."/>
 
         <method name="verifyConnection" label="Verify Connection" delegate="shellScript"
                 script="powercenter/powercenter_checkConnection"/>
