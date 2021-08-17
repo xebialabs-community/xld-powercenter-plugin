@@ -1,23 +1,48 @@
 import org.apache.tools.ant.filters.ReplaceTokens
 
+buildscript {
+  repositories {
+    mavenLocal()
+    maven {
+      url 'https://oss.sonatype.org/service/local/repositories/releases/content'
+    }
+    mavenCentral()
+  }
+  dependencies {
+    classpath "com.xebialabs.gradle.plugins:integration-server-gradle-plugin:${integrationServerGradlePluginVersion}"
+  }
+}
+
 plugins {
-  id "com.github.hierynomus.license" version "0.13.1"
-  id "com.xebialabs.xldp" version "1.0.5"
-  id "com.xebialabs.xl.docker" version "1.1.0"
-  id "nebula.release" version "6.0.0"
+  id "com.github.hierynomus.license" version "${licensePluginVersion}"
+  id "com.xebialabs.xldp" version "${xldpPluginVersion}"
+  id 'nebula.release' version "${nebulaReleasePluginVersion}"
 }
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
+apply plugin: 'integration.server'
 
-xlDocker {
-  compileImage = 'xebialabs/xld_dev_compile'
-  compileVersion = 'v7.6.0.1'
-  runImage = 'xebialabs/xld_dev_run'
-  runVersion = 'v7.6.0.1'
-  runPortMapping = '24516:4516'
+integrationServer {
+  servers {
+    controlPlane {
+      dockerImage = "xebialabs/xl-deploy"
+      version = "10.2.2"
+      httpPort = 4516
+      overlays = [
+        "plugins/xld-official": [
+          fileTree(dir: "${buildDir}", includes: ["**/xld-powercenter*.xldp"])
+        ]
+      ]
+      yamlPatches = [
+        'centralConfiguration/deploy-server.yaml': [
+          'deploy.server.label': 'Deploy with PowerCenter Plugin'
+        ]
+      ]
+    }
+  }
 }
 
 if (!project.hasProperty('release.scope')) {
@@ -39,6 +64,10 @@ processResources.configure {
 license {
   header rootProject.file('License.md')
   strictCheck false
-  ext.year = Calendar.getInstance().get(Calendar.YEAR)
+  ext.year = '2020'
   ext.name = 'Digital.ai'
+}
+
+rootProject.afterEvaluate {
+  startIntegrationServer.dependsOn(build)
 }

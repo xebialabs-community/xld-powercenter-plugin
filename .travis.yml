@@ -1,5 +1,5 @@
 language: java
-jdk: openjdk8
+jdk: openjdk11
 notifications:
   slack:
     secure: KaGKMvZV4tQxtbEcvoD+Lq6iVLPECZ4cgYQXykAeN/7W6rlVXvsgp8LX2QidN0F5YRg78xF7JvRHumryi3GaMEEixyWbt1CJBEmmHDxs9FPodJ2fCCoaSSarnBRYcpedstK0YoCVFmzKUkmjXhiid0R+Q2XDzZDGNo/aX9bEgqs=

@@ -35,6 +35,32 @@ The XL Deploy PowerCenter plugin provides a configuration item for a PowerCenter
 * Copy the latest JAR file from the [releases page](https://github.com/xebialabs-community/xld-powercenter-plugin/releases) into the `XL_DEPLOY_SERVER/plugins` directory.
 * Restart the XL Deploy server.
 
+## Integration Tests
+
+In order to run an integration test you have to execute the next command:
+
+```shell
+./gradlew clean startIntegrationServer --stacktrace
+```
+
+flag `--stacktrace` will help to find out the root cause issues if they will happen.
+
+This command will run Deploy in a container which is specified by these 2 parameters:
+
+```groovy
+dockerImage = "xebialabs/xl-deploy" // Docker image without the version
+version = "10.2.2" // And actually the version of it.
+```
+
+If you would like to see the logs of deploy you can do it next way:
+
+1. Run `docker ps` and find the container which has image combined by 2 props $dockerImage:$version, for example `xebialabs/xl-deploy:10.2.2`.
+
+2. Let's image you have there container id = `bdc35b82271a`. Then you have to type `docker logs bdc35b82271a -f`, and now you can see 
+logs from the inception till get updates. 
+
+Locally you can find mounted folders in <proj>/build/integration-server/deploy. You can modify your configuration files and restart the docker image.
+In case you want to have a more sophisticated setup you can have a look at plugin https://github.com/xebialabs/integration-server-gradle-plugin.
 
 ## Usage
 
